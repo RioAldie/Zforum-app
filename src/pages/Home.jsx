@@ -18,6 +18,7 @@ const Home = () => {
           membuktikan bahwa Gen-Z tidak seburuk yang dipikirkan oleh
           orang-orang diluar sana
         </Typography>
+
         <Link to={'login'}>
           <Link to={'/login'}>
             <Button

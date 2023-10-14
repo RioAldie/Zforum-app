@@ -4,8 +4,15 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Forum from './pages/Forum';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const { authUser = null, isPreload = false } = useSelector(
+    (states) => states
+  );
+  {
+    console.log('data =>', authUser);
+  }
   return (
     <>
       <BrowserRouter>

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Thread() {
   return (
-    <Card sx={{ minWidth: 345 }}>
+    <Card sx={{ maxWidth: 645 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Lizard
