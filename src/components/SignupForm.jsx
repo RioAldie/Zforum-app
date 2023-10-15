@@ -1,12 +1,13 @@
-import {
-  Box,
-  Button,
-  Link,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
+import BtnSignup from './buttons/BtnSignup';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function SignupForm() {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+
+  const date = new Date().getTime().toString();
   return (
     <Box
       sx={{
@@ -24,6 +25,7 @@ export default function SignupForm() {
         label="Nama"
         type="text"
         variant="outlined"
+        onChange={(e) => setName(e.target.value)}
       />
       <TextField
         fullWidth
@@ -39,19 +41,12 @@ export default function SignupForm() {
         type="password"
         autoComplete="current-password"
         variant="outlined"
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <Button
-        fullWidth
-        size="large"
-        variant="contained"
-        color="primary">
-        Daftar
-      </Button>
+      <BtnSignup name={name} password={password} id={date} />
       <Typography variant="subtitle1">
         Sudah Punya Akun?
-        <Link href="#" underline="none">
-          {' Login disini'}
-        </Link>
+        <Link to={'/login'}>{' Login disini'}</Link>
       </Typography>
     </Box>
   );
