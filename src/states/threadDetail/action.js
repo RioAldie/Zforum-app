@@ -1,55 +1,55 @@
 import api from '../../utils/api';
 
 const ActionType = {
-  RECEIVE_TALK_DETAIL: 'RECEIVE_TALK_DETAIL',
-  CLEAR_TALK_DETAIL: 'CLEAR_TALK_DETAIL',
-  TOGGLE_LIKE_TALK_DETAIL: 'TOGGLE_LIKE_TALK_DETAIL',
+  RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
+  CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
+  TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL',
 };
 
-function receiveTalkDetailActionCreator(talkDetail) {
+function receiveThreadDetailActionCreator(threadDetail) {
   return {
-    type: ActionType.RECEIVE_TALK_DETAIL,
+    type: ActionType.RECEIVE_THREAD_DETAIL,
     payload: {
-      talkDetail,
+      threadDetail,
     },
   };
 }
 
-function clearTalkDetailActionCreator() {
+function clearThreadDetailActionCreator() {
   return {
-    type: ActionType.CLEAR_TALK_DETAIL,
+    type: ActionType.CLEAR_THREAD_DETAIL,
   };
 }
 
-function toggleLikeTalkDetailActionCreator(userId) {
+function toggleLikeThreadDetailActionCreator(userId) {
   return {
-    type: ActionType.TOGGLE_LIKE_TALK_DETAIL,
+    type: ActionType.TOGGLE_LIKE_THREAD_DETAIL,
     payload: {
       userId,
     },
   };
 }
 
-function asyncReceiveTalkDetail(talkId) {
+function asyncReceiveThreadDetail(talkId) {
   return async (dispatch) => {
-    dispatch(clearTalkDetailActionCreator());
+    dispatch(clearThreadDetailActionCreator());
 
     try {
       const talkDetail = await api.getTalkDetail(talkId);
-      dispatch(receiveTalkDetailActionCreator(talkDetail));
+      dispatch(receiveThreadDetailActionCreator(talkDetail));
     } catch (error) {
       alert(error.message);
     }
   };
 }
 
-function asyncToogleLikeTalkDetail() {
+function asyncToogleLikeThreadDetail() {
   return async (dispatch, getState) => {
-    const { authUser, talkDetail } = getState();
-    dispatch(toggleLikeTalkDetailActionCreator(authUser.id));
+    const { authUser, threadDetail } = getState();
+    dispatch(toggleLikeThreadDetailActionCreator(authUser.id));
 
     try {
-      await api.toggleLikeTalk(talkDetail.id);
+      await api.toggleUpvoteThread(threadDetail.id);
     } catch (error) {
       alert(error.message);
     }
@@ -58,9 +58,9 @@ function asyncToogleLikeTalkDetail() {
 
 export {
   ActionType,
-  receiveTalkDetailActionCreator,
-  clearTalkDetailActionCreator,
-  toggleLikeTalkDetailActionCreator,
-  asyncReceiveTalkDetail,
-  asyncToogleLikeTalkDetail,
+  receiveThreadDetailActionCreator,
+  clearThreadDetailActionCreator,
+  toggleLikeThreadDetailActionCreator,
+  asyncReceiveThreadDetail,
+  asyncToogleLikeThreadDetail,
 };

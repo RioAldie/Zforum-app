@@ -1,7 +1,19 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { asyncSetAuthUser } from '../states/authUser/action';
 
 export default function LoginForm() {
+  const [password, setPassword] = useState();
+  const [email, setEmail] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleLogin = (email, password) => {
+    dispatch(asyncSetAuthUser({ email, password }));
+
+    navigate('/');
+  };
   return (
     <Box
       sx={{
@@ -19,6 +31,7 @@ export default function LoginForm() {
         label="Email"
         type="email"
         variant="outlined"
+        onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
         fullWidth
@@ -27,21 +40,21 @@ export default function LoginForm() {
         type="password"
         autoComplete="current-password"
         variant="outlined"
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <Link to={'/forum'}>
-        <Button
-          fullWidth
-          size="large"
-          variant="contained"
-          color="primary">
-          Masuk
-        </Button>
-      </Link>
+
+      <Button
+        fullWidth
+        size="large"
+        variant="contained"
+        color="primary"
+        onClick={() => handleLogin(email, password)}>
+        Masuk
+      </Button>
+
       <Typography variant="subtitle1">
         Belum Punya Akun?
-        <Link href="#" underline="none">
-          {' daftar disini'}
-        </Link>
+        <Link to={'/signup'}>{' daftar disini'}</Link>
       </Typography>
     </Box>
   );

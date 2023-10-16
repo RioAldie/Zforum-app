@@ -1,26 +1,50 @@
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {
+  Avatar,
+  CardHeader,
+  Checkbox,
+  IconButton,
+} from '@mui/material';
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import PropTypes from 'prop-types';
 
-export default function Thread() {
+export default function Thread({ title, body, createdAt }) {
   return (
     <Card sx={{ maxWidth: 645 }}>
+      <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: 'red' }} aria-label="recipe">
+            R
+          </Avatar>
+        }
+        title="Shrimp and Chorizo Paella"
+        subheader={createdAt}
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with
-          over 6,000 species, ranging across all continents except
-          Antarctica
+          {body}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <IconButton aria-label="add to favorites">
+          <Checkbox
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite sx={{ color: 'red' }} />}
+          />
+        </IconButton>
       </CardActions>
     </Card>
   );
 }
+
+Thread.propTypes = {
+  title: PropTypes.string,
+  body: PropTypes.string,
+  createdAt: PropTypes.string,
+};

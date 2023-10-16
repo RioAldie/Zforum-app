@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 export default function SignupForm() {
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const date = new Date().getTime().toString();
   return (
     <Box
       sx={{
@@ -33,6 +33,7 @@ export default function SignupForm() {
         label="Email"
         type="email"
         variant="outlined"
+        onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
         fullWidth
@@ -43,7 +44,7 @@ export default function SignupForm() {
         variant="outlined"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <BtnSignup name={name} password={password} id={date} />
+      <BtnSignup name={name} password={password} email={email} />
       <Typography variant="subtitle1">
         Sudah Punya Akun?
         <Link to={'/login'}>{' Login disini'}</Link>

@@ -1,10 +1,12 @@
 import api from '../../utils/api';
-import { ActionTypePreload } from '../ActionType';
-import setAuthUserActionCreator from '../auth/action';
+import { setAuthUserActionCreator } from '../authUser/action';
 
+const ActionType = {
+  SET_IS_PRELOAD: 'SET_IS_PRELOAD',
+};
 function setIsPreloadActionCreator(isPreload) {
   return {
-    type: ActionTypePreload.SET_IS_PRELOAD,
+    type: ActionType.SET_IS_PRELOAD,
     payload: {
       isPreload,
     },
@@ -25,7 +27,4 @@ function asyncPreloadProcess() {
     }
   };
 }
-export default {
-  setIsPreloadActionCreator,
-  asyncPreloadProcess,
-};
+export { ActionType, setIsPreloadActionCreator, asyncPreloadProcess };

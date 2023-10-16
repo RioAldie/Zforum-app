@@ -1,27 +1,29 @@
 import api from '../../utils/api';
-import { ActionTypeAuth } from '../ActionType';
 
-const setAuthUserActionCreator = (authUser) => {
+const ActionType = {
+  SET_AUTH_USER: 'SET_AUTH_USER',
+  UNSET_AUTH_USER: 'UNSET_AUTH_USER',
+};
+
+function setAuthUserActionCreator(authUser) {
   return {
-    type: ActionTypeAuth.SET_AUTH_USER,
+    type: ActionType.SET_AUTH_USER,
     payload: {
       authUser,
     },
   };
-};
+}
 
-const unsetAuthUserActionCreator = () => {
+function unsetAuthUserActionCreator() {
   return {
-    type: ActionTypeAuth.UNSET_AUTH_USER,
-    payload: {
-      authUser: null,
-    },
+    type: ActionType.UNSET_AUTH_USER,
   };
-};
-function asyncSetAuthUser({ id, password }) {
+}
+
+function asyncSetAuthUser({ email, password }) {
   return async (dispatch) => {
     try {
-      const token = await api.login({ id, password });
+      const token = await api.login({ email, password });
       api.putAccessToken(token);
       const authUser = await api.getOwnProfile();
       dispatch(setAuthUserActionCreator(authUser));
@@ -38,7 +40,8 @@ function asyncUnsetAuthUser() {
   };
 }
 
-export default {
+export {
+  ActionType,
   setAuthUserActionCreator,
   unsetAuthUserActionCreator,
   asyncSetAuthUser,

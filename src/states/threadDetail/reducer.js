@@ -1,23 +1,23 @@
 import { ActionType } from './action';
 
-function talkDetailReducer(talkDetail = null, action = {}) {
+function threadDetailReducer(threadDetail = null, action = {}) {
   switch (action.type) {
-    case ActionType.RECEIVE_TALK_DETAIL:
-      return action.payload.talkDetail;
-    case ActionType.CLEAR_TALK_DETAIL:
+    case ActionType.RECEIVE_THREAD_DETAIL:
+      return action.payload.threadDetail;
+    case ActionType.CLEAR_THREAD_DETAIL:
       return null;
-    case ActionType.TOGGLE_LIKE_TALK_DETAIL:
+    case ActionType.TOGGLE_LIKE_THREAD_DETAIL:
       return {
-        ...talkDetail,
-        likes: talkDetail.likes.includes(action.payload.userId)
-          ? talkDetail.likes.filter(
+        ...threadDetail,
+        threads: threadDetail.threads.includes(action.payload.userId)
+          ? threadDetail.threads.filter(
               (id) => id !== action.payload.userId
             )
-          : talkDetail.likes.concat(action.payload.userId),
+          : threadDetail.threads.concat(action.payload.userId),
       };
     default:
-      return talkDetail;
+      return threadDetail;
   }
 }
 
-export default talkDetailReducer;
+export default threadDetailReducer;

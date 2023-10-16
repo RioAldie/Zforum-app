@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authUserReducer from './auth/reducer';
+import authUserReducer from './authUser/reducer';
 import isPreloadReducer from './isPreload/reducer';
 import talkDetailReducer from './threadDetail/reducer';
-import talksReducer from './thread/reducer';
+import threadsReducer from './thread/reducer';
 import usersReducer from './users/reducer';
 
 const store = configureStore({
@@ -10,7 +10,7 @@ const store = configureStore({
     authUser: authUserReducer,
     isPreload: isPreloadReducer,
     users: usersReducer,
-    talks: talksReducer,
+    threads: threadsReducer,
     talkDetail: talkDetailReducer,
   },
 });

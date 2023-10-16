@@ -1,5 +1,5 @@
 const api = (() => {
-  const BASE_URL = 'https://openspace-api.netlify.app/v1';
+  const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
   async function _fetchWithAuth(url, options = {}) {
     return fetch(url, {
@@ -19,14 +19,14 @@ const api = (() => {
     return localStorage.getItem('accessToken');
   }
 
-  async function register({ id, name, password }) {
-    const response = await fetch(`${BASE_URL}/users`, {
+  async function register({ email, name, password }) {
+    const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id,
+        email,
         name,
         password,
       }),
@@ -46,14 +46,14 @@ const api = (() => {
     return user;
   }
 
-  async function login({ id, password }) {
+  async function login({ email, password }) {
     const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id,
+        email,
         password,
       }),
     });
@@ -109,8 +109,8 @@ const api = (() => {
     return users;
   }
 
-  async function getAllTalks() {
-    const response = await fetch(`${BASE_URL}/talks`);
+  async function getAllThreads() {
+    const response = await fetch(`${BASE_URL}/threads`);
 
     const responseJson = await response.json();
 
@@ -121,14 +121,14 @@ const api = (() => {
     }
 
     const {
-      data: { talks },
+      data: { threads },
     } = responseJson;
 
-    return talks;
+    return threads;
   }
 
-  async function getTalkDetail(id) {
-    const response = await fetch(`${BASE_URL}/talks/${id}`);
+  async function getThreadDetail(id) {
+    const response = await fetch(`${BASE_URL}/threads/${id}`);
 
     const responseJson = await response.json();
 
@@ -139,21 +139,21 @@ const api = (() => {
     }
 
     const {
-      data: { talkDetail },
+      data: { threadDetail },
     } = responseJson;
 
-    return talkDetail;
+    return threadDetail;
   }
 
-  async function createTalk({ text, replyTo = '' }) {
-    const response = await _fetchWithAuth(`${BASE_URL}/talks`, {
+  async function createThread({ title, body }) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        text,
-        replyTo,
+        title,
+        body,
       }),
     });
 
@@ -166,22 +166,25 @@ const api = (() => {
     }
 
     const {
-      data: { talk },
+      data: { thread },
     } = responseJson;
 
-    return talk;
+    return thread;
   }
 
-  async function toggleLikeTalk(id) {
-    const response = await _fetchWithAuth(`${BASE_URL}/talks/likes`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        talkId: id,
-      }),
-    });
+  async function toggleUpvoteThread(id) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/likes`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          threadId: id,
+        }),
+      }
+    );
 
     const responseJson = await response.json();
 
@@ -199,10 +202,10 @@ const api = (() => {
     login,
     getOwnProfile,
     getAllUsers,
-    getAllTalks,
-    createTalk,
-    toggleLikeTalk,
-    getTalkDetail,
+    getAllThreads,
+    createThread,
+    toggleUpvoteThread,
+    getThreadDetail,
   };
 })();
 

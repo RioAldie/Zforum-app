@@ -4,11 +4,11 @@ import { asyncRegisterUser } from '../../states/users/action';
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const BtnSignup = ({ name, id, password }) => {
+const BtnSignup = ({ name, email, password }) => {
   const dispatch = useDispatch();
 
-  const handleRegister = ({ name, id, password }) => {
-    dispatch(asyncRegisterUser({ id, name, password }));
+  const handleRegister = () => {
+    dispatch(asyncRegisterUser({ email, name, password }));
 
     Navigate('/');
   };
@@ -18,7 +18,7 @@ const BtnSignup = ({ name, id, password }) => {
       size="large"
       variant="contained"
       color="primary"
-      onClick={() => handleRegister({ name, id, password })}>
+      onClick={() => handleRegister()}>
       Daftar
     </Button>
   );
@@ -26,7 +26,7 @@ const BtnSignup = ({ name, id, password }) => {
 
 BtnSignup.propTypes = {
   name: PropTypes.string,
-  id: PropTypes.string,
+  email: PropTypes.string,
   password: PropTypes.string,
 };
 

@@ -1,55 +1,55 @@
 import api from '../../utils/api';
 
 const ActionType = {
-  RECEIVE_TALKS: 'RECEIVE_TALKS',
-  ADD_TALK: 'ADD_TALK',
-  TOGGLE_LIKE_TALK: 'TOGGLE_LIKE_TALK',
+  RECEIVE_THREADS: 'RECEIVE_THREADS',
+  ADD_THREAD: 'ADD_THREAD',
+  TOGGLE_LIKE_THREAD: 'TOGGLE_LIKE_THREAD',
 };
 
-function receiveTalksActionCreator(talks) {
+function receiveThreadsActionCreator(threads) {
   return {
-    type: ActionType.RECEIVE_TALKS,
+    type: ActionType.RECEIVE_THREADS,
     payload: {
-      talks,
+      threads,
     },
   };
 }
 
-function addTalkActionCreator(talk) {
+function addThreadActionCreator(thread) {
   return {
-    type: ActionType.ADD_TALK,
+    type: ActionType.ADD_THREAD,
     payload: {
-      talk,
+      thread,
     },
   };
 }
 
-function toggleLikeTalkActionCreator({ talkId, userId }) {
+function toggleLikeThreadActionCreator({ threadId, userId }) {
   return {
-    type: ActionType.TOGGLE_LIKE_TALK,
+    type: ActionType.TOGGLE_LIKE_THREAD,
     payload: {
-      talkId,
+      threadId,
       userId,
     },
   };
 }
 
-function asyncAddTalk({ text, replyTo = '' }) {
+function asyncAddThread({ title, body }) {
   return async (dispatch) => {
     try {
-      const talk = await api.createTalk({ text, replyTo });
-      dispatch(addTalkActionCreator(talk));
+      const talk = await api.createThread({ title, body });
+      dispatch(addThreadActionCreator(talk));
     } catch (error) {
       alert(error.message);
     }
   };
 }
 
-function asyncToogleLikeTalk(talkId) {
+function asyncToogleLikeThread(talkId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
     dispatch(
-      toggleLikeTalkActionCreator({ talkId, userId: authUser.id })
+      toggleLikeThreadActionCreator({ talkId, userId: authUser.id })
     );
 
     try {
@@ -57,7 +57,7 @@ function asyncToogleLikeTalk(talkId) {
     } catch (error) {
       alert(error.message);
       dispatch(
-        toggleLikeTalkActionCreator({ talkId, userId: authUser.id })
+        toggleLikeThreadActionCreator({ talkId, userId: authUser.id })
       );
     }
   };
@@ -65,9 +65,9 @@ function asyncToogleLikeTalk(talkId) {
 
 export {
   ActionType,
-  receiveTalksActionCreator,
-  addTalkActionCreator,
-  toggleLikeTalkActionCreator,
-  asyncAddTalk,
-  asyncToogleLikeTalk,
+  receiveThreadsActionCreator,
+  addThreadActionCreator,
+  toggleLikeThreadActionCreator,
+  asyncAddThread,
+  asyncToogleLikeThread,
 };
