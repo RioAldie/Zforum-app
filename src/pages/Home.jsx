@@ -19,15 +19,13 @@ const Home = () => {
           orang-orang diluar sana
         </Typography>
 
-        <Link to={'login'}>
-          <Link to={'/login'}>
-            <Button
-              variant="contained"
-              sx={{ width: '200px' }}
-              endIcon={<SendIcon />}>
-              Mulai
-            </Button>
-          </Link>
+        <Link to={'/forum'}>
+          <Button
+            variant="contained"
+            sx={{ width: '200px' }}
+            endIcon={<SendIcon />}>
+            Mulai
+          </Button>
         </Link>
       </Box>
     </Box>

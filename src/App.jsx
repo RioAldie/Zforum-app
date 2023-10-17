@@ -4,24 +4,49 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Forum from './pages/Forum';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { asyncPreloadProcess } from './states/isPreload/action';
+import AddThread from './pages/AddThread';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
     (states) => states
   );
-  {
-    console.log('data =>', authUser);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncPreloadProcess());
+    console.log('preload');
+  }, [dispatch]);
+
+  if (isPreload) {
+    return null;
   }
+  if (authUser === null) {
+    return (
+      <BrowserRouter>
+        <Layout authUser={authUser}>
+          <Routes>
+            <Route path="/*" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    );
+  }
+
   return (
     <>
       <BrowserRouter>
-        <Layout>
+        <Layout authUser={authUser}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/add" element={<AddThread />} />
           </Routes>
         </Layout>
       </BrowserRouter>

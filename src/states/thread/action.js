@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -36,17 +37,20 @@ function toggleLikeThreadActionCreator({ threadId, userId }) {
 
 function asyncAddThread({ title, body }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
-      const talk = await api.createThread({ title, body });
-      dispatch(addThreadActionCreator(talk));
+      const thread = await api.createThread({ title, body });
+      dispatch(addThreadActionCreator(thread));
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncToogleLikeThread(talkId) {
   return async (dispatch, getState) => {
+    dispatch(showLoading());
     const { authUser } = getState();
     dispatch(
       toggleLikeThreadActionCreator({ talkId, userId: authUser.id })
@@ -60,6 +64,7 @@ function asyncToogleLikeThread(talkId) {
         toggleLikeThreadActionCreator({ talkId, userId: authUser.id })
       );
     }
+    dispatch(hideLoading());
   };
 }
 

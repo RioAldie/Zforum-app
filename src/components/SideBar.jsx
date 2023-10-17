@@ -19,6 +19,8 @@ const Sidebar = () => {
         sx={{
           display: { xs: 'none', sm: 'block' },
           width: '400px',
+          position: 'sticky',
+          top: '10px',
         }}>
         <Box>
           <List>
