@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import AddThread from './pages/AddThread';
+import DetailThread from './pages/Detail';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -47,6 +48,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/add" element={<AddThread />} />
+            <Route path="/thread/:id" element={<DetailThread />} />
           </Routes>
         </Layout>
       </BrowserRouter>

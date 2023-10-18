@@ -57,7 +57,7 @@ function asyncToogleLikeThread(talkId) {
     );
 
     try {
-      await api.toggleLikeTalk(talkId);
+      await api.toggleUpvoteThread(talkId);
     } catch (error) {
       alert(error.message);
       dispatch(

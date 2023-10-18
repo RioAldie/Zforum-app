@@ -4,6 +4,7 @@ const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
   TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL',
+  REPLY_THREAD: 'REPLY_THREAD',
 };
 
 function receiveThreadDetailActionCreator(threadDetail) {
@@ -29,14 +30,31 @@ function toggleLikeThreadDetailActionCreator(userId) {
     },
   };
 }
-
-function asyncReceiveThreadDetail(talkId) {
+function replyThreadActionCreator(threadDetail) {
+  return {
+    type: ActionType.REPLY_THREAD,
+    payload: {
+      threadDetail,
+    },
+  };
+}
+function asyncReplyThread({ content, id }) {
+  return async (dispatch) => {
+    try {
+      const threadDetail = await api.replyThread({ content, id });
+      dispatch(replyThreadActionCreator(threadDetail));
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
     dispatch(clearThreadDetailActionCreator());
 
     try {
-      const talkDetail = await api.getTalkDetail(talkId);
-      dispatch(receiveThreadDetailActionCreator(talkDetail));
+      const threadDetail = await api.getThreadDetail(threadId);
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
     }
@@ -63,4 +81,5 @@ export {
   toggleLikeThreadDetailActionCreator,
   asyncReceiveThreadDetail,
   asyncToogleLikeThreadDetail,
+  asyncReplyThread,
 };

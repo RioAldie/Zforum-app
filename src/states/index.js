@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authUserReducer from './authUser/reducer';
 import isPreloadReducer from './isPreload/reducer';
-import talkDetailReducer from './threadDetail/reducer';
 import threadsReducer from './thread/reducer';
 import usersReducer from './users/reducer';
 import { loadingBarReducer } from 'react-redux-loading-bar';
+import threadDetailReducer from './threadDetail/reducer';
 
 const store = configureStore({
   reducer: {
@@ -12,7 +12,7 @@ const store = configureStore({
     isPreload: isPreloadReducer,
     users: usersReducer,
     threads: threadsReducer,
-    talkDetail: talkDetailReducer,
+    threadDetail: threadDetailReducer,
     loadingBar: loadingBarReducer,
   },
 });
