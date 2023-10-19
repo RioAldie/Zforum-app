@@ -9,11 +9,28 @@ import { useEffect } from 'react';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import AddThread from './pages/AddThread';
 import DetailThread from './pages/Detail';
+import {
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+} from '@mui/material';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
     (states) => states
   );
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#673ab7',
+      },
+      secondary: {
+        main: '#fff',
+      },
+      mode: 'dark',
+    },
+  });
 
   const dispatch = useDispatch();
 
@@ -28,12 +45,16 @@ function App() {
   if (authUser === null) {
     return (
       <BrowserRouter>
-        <Layout authUser={authUser}>
-          <Routes>
-            <Route path="/*" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
-        </Layout>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout authUser={authUser}>
+            <Routes>
+              <Route path="/*" element={<Login />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<Signup />} />
+            </Routes>
+          </Layout>
+        </ThemeProvider>
       </BrowserRouter>
     );
   }

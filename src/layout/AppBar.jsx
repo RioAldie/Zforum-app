@@ -22,30 +22,12 @@ const ResponsiveAppBar = ({ authUser }) => {
             flexDirection: 'row',
           }}>
           <Link to={'/forum'}>
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-              <AdbIcon
-                sx={{
-                  display: { xs: 'none', md: 'flex' },
-                  mr: 1,
-                  color: '#fff',
-                }}
-              />
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                sx={{
-                  mr: 2,
-                  display: { xs: 'none', md: 'flex' },
-                  fontFamily: 'monospace',
-                  fontWeight: 700,
-                  letterSpacing: '.3rem',
-                  color: '#fff',
-                  textDecoration: 'none',
-                }}>
-                LOGO
-              </Typography>
-            </Box>
+            <img
+              src="/images/genz-logo.png"
+              alt="logo"
+              width={60}
+              height={40}
+            />
           </Link>
 
           <Box sx={{ flexGrow: 0 }}>
