@@ -9,9 +9,11 @@ import {
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const FormAddThread = ({ addThread }) => {
+const FormAddThread = ({ addThread, authUser }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+
+  const { avatar, name } = authUser;
   function handleAddThread() {
     addThread(title, body);
   }
@@ -23,6 +25,7 @@ const FormAddThread = ({ addThread }) => {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
+        width: { xs: '390px', sm: '500px', lg: '800px' },
       }}>
       <Box
         sx={{
@@ -31,8 +34,8 @@ const FormAddThread = ({ addThread }) => {
           alignItems: 'center',
           gap: '10px',
         }}>
-        <Avatar>R</Avatar>
-        <Typography>Rio Aldi</Typography>
+        <Avatar src={avatar}></Avatar>
+        <Typography>{name}</Typography>
       </Box>
       <TextField
         fullWidth
@@ -52,10 +55,10 @@ const FormAddThread = ({ addThread }) => {
         onChange={(e) => setBody(e.target.value)}
       />
       <Button
-        variant="outlined"
+        variant="contained"
         size="small"
         onClick={() => handleAddThread()}>
-        buat thread
+        Buat
       </Button>
     </Paper>
   );
@@ -63,5 +66,6 @@ const FormAddThread = ({ addThread }) => {
 
 FormAddThread.propTypes = {
   addThread: PropTypes.func.isRequired,
+  authUser: PropTypes.object,
 };
 export default FormAddThread;

@@ -11,6 +11,9 @@ const Threads = ({ threads }) => {
         display: 'flex',
         flexDirection: 'column',
         gap: '25px',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
       {threads.map((thread, i) => {
         if (thread !== undefined) {

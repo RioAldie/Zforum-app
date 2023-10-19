@@ -62,16 +62,19 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Layout authUser={authUser}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/forum" element={<Forum />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/add" element={<AddThread />} />
-            <Route path="/thread/:id" element={<DetailThread />} />
-          </Routes>
-        </Layout>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout authUser={authUser}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/forum" element={<Forum />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/add" element={<AddThread />} />
+              <Route path="/thread/:id" element={<DetailThread />} />
+            </Routes>
+          </Layout>
+        </ThemeProvider>
       </BrowserRouter>
     </>
   );

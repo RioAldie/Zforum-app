@@ -5,7 +5,6 @@ import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import Threads from '../components/Threads';
 import { Box } from '@mui/material';
 import AddThreadTrigger from '../components/AddThreadTrigger';
-import Loading from '../components/Loading';
 
 const Forum = () => {
   const {
@@ -31,21 +30,21 @@ const Forum = () => {
     }
   });
 
-  console.log('threadlist =>', threads);
   return (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        gap: '20px',
-        width: '80%',
       }}>
-      <Loading />
       <Sidebar />
-      <Box>
-        <AddThreadTrigger />
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}>
+        <AddThreadTrigger authUser={authUser} />
         <Threads threads={threadList} />
       </Box>
     </Box>

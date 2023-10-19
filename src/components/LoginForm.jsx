@@ -12,7 +12,7 @@ export default function LoginForm() {
   const handleLogin = (email, password) => {
     dispatch(asyncSetAuthUser({ email, password }));
 
-    navigate('/');
+    navigate('/forum');
   };
   return (
     <Box
@@ -21,10 +21,26 @@ export default function LoginForm() {
         display: 'flex',
         flexDirection: 'column',
         gap: '15px',
+        marginTop: '100px',
       }}>
-      <Typography variant="h5" color={'primary'}>
-        Login
-      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '10px',
+        }}>
+        <img
+          src="/images/genz-logo.png"
+          alt="logo"
+          width={30}
+          height={20}
+        />
+        <Typography variant="h5" color={'primary'}>
+          Login
+        </Typography>
+      </Box>
+
       <TextField
         fullWidth
         id="email"
@@ -54,7 +70,9 @@ export default function LoginForm() {
 
       <Typography variant="subtitle1">
         Belum Punya Akun?
-        <Link to={'/signup'}>{' daftar disini'}</Link>
+        <Link to={'/signup'}>
+          <span style={{ color: 'yellow' }}>{' daftar disini'}</span>
+        </Link>
       </Typography>
     </Box>
   );

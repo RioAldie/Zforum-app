@@ -6,7 +6,13 @@ const Layout = ({ children, authUser }) => {
   return (
     <>
       <ResponsiveAppBar authUser={authUser} />
-      <Container sx={{ padding: '20px' }}>{children}</Container>
+      <Container
+        sx={{
+          padding: { xs: 0, sm: 0, lg: '20px' },
+          marginTop: '100px',
+        }}>
+        {children}
+      </Container>
     </>
   );
 };
