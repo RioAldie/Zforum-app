@@ -17,7 +17,6 @@ const Forum = () => {
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
-    console.log('tes');
   }, [dispatch]);
 
   const threadList = threads.map((thread) => {

@@ -19,7 +19,7 @@ const BadgeBox = styled(Box)({
   height: '50px',
 });
 
-export default function UsersCard(props) {
+const UsersCard = (props) => {
   const { name } = props;
   return (
     <>
@@ -54,8 +54,10 @@ export default function UsersCard(props) {
       </ListItem>
     </>
   );
-}
+};
 
 UsersCard.propTypes = {
   name: PropTypes.string,
 };
+
+export default UsersCard;

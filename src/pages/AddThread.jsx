@@ -2,7 +2,6 @@ import { Box } from '@mui/material';
 import FormAddThread from '../components/FormAddThread';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncAddThread } from '../states/thread/action';
-import Loading from '../components/Loading';
 
 const AddThread = () => {
   const { authUser } = useSelector((states) => states);

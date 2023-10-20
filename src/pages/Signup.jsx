@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import SignupForm from '../components/SignupForm';
 
-export default function Signup() {
+const Signup = () => {
   return (
     <Box
       sx={{
@@ -13,4 +13,5 @@ export default function Signup() {
       <SignupForm />
     </Box>
   );
-}
+};
+export default Signup;

@@ -3,7 +3,7 @@ import BtnSignup from './buttons/BtnSignup';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function SignupForm() {
+const SignupForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,4 +54,6 @@ export default function SignupForm() {
       </Typography>
     </Box>
   );
-}
+};
+
+export default SignupForm;

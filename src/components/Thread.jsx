@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { postedAt } from '../utils/time';
 import ReactHtmlParser from 'react-html-parser';
 
-export default function Thread({ title, body, createdAt, user, id }) {
+const Thread = ({ title, body, createdAt, user, id }) => {
   const postTime = postedAt(createdAt);
   return (
     <Card
@@ -49,7 +49,7 @@ export default function Thread({ title, body, createdAt, user, id }) {
       </CardActions>
     </Card>
   );
-}
+};
 
 Thread.propTypes = {
   title: PropTypes.string,
@@ -60,3 +60,5 @@ Thread.propTypes = {
   user: PropTypes.object,
   id: PropTypes.string,
 };
+
+export default Thread;

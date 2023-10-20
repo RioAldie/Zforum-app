@@ -5,8 +5,6 @@ import {
   asyncReceiveThreadDetail,
   asyncReplyThread,
 } from '../states/threadDetail/action';
-import { asyncAddThread } from '../states/thread/action';
-import Thread from '../components/Thread';
 import { Box, TextField, Button, Typography } from '@mui/material';
 import ThreadDetail from '../components/ThreadDetail';
 import Comment from '../components/Comment';
@@ -19,13 +17,10 @@ const DetailThread = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // @TODO: dispatch async action to get talk detail by id
     dispatch(asyncReceiveThreadDetail(id));
   }, [id, dispatch, isUpdate]);
 
   const onReplyTalk = (content) => {
-    // @TODO: dispatch async action to add reply talk
-
     dispatch(asyncReplyThread({ content, id }));
     setIsUpdate(!isUpdate);
   };

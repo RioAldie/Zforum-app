@@ -36,7 +36,6 @@ function App() {
 
   useEffect(() => {
     dispatch(asyncPreloadProcess());
-    console.log('preload');
   }, [dispatch]);
 
   if (isPreload) {

@@ -48,20 +48,23 @@ function asyncAddThread({ title, body }) {
   };
 }
 
-function asyncToogleLikeThread(talkId) {
+function asyncToogleLikeThread(threadId) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser } = getState();
     dispatch(
-      toggleLikeThreadActionCreator({ talkId, userId: authUser.id })
+      toggleLikeThreadActionCreator({ threadId, userId: authUser.id })
     );
 
     try {
-      await api.toggleUpvoteThread(talkId);
+      await api.toggleUpvoteThread(threadId);
     } catch (error) {
       alert(error.message);
       dispatch(
-        toggleLikeThreadActionCreator({ talkId, userId: authUser.id })
+        toggleLikeThreadActionCreator({
+          threadId,
+          userId: authUser.id,
+        })
       );
     }
     dispatch(hideLoading());
