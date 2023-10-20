@@ -5,18 +5,22 @@ import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import Threads from '../components/Threads';
 import { Box } from '@mui/material';
 import AddThreadTrigger from '../components/AddThreadTrigger';
+import Leaderboard from '../components/Leaderboard';
+import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
 
 const Forum = () => {
   const {
     threads = [],
     users = [],
     authUser,
+    leaderboards,
   } = useSelector((states) => states);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
+    dispatch(asyncReceiveLeaderboards());
   }, [dispatch]);
 
   const threadList = threads.map((thread) => {
@@ -46,6 +50,7 @@ const Forum = () => {
         <AddThreadTrigger authUser={authUser} />
         <Threads threads={threadList} />
       </Box>
+      <Leaderboard leaderboards={leaderboards} />
     </Box>
   );
 };

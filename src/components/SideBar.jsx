@@ -5,12 +5,10 @@ import {
   ListItemIcon,
   ListItemText,
   ListItemButton,
+  Typography,
 } from '@mui/material';
-import ForestIcon from '@mui/icons-material/Forest';
-import LandscapeIcon from '@mui/icons-material/Landscape';
-import ChairIcon from '@mui/icons-material/Chair';
-import PetsIcon from '@mui/icons-material/Pets';
-import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 const Sidebar = () => {
   return (
     <Box>
@@ -22,45 +20,22 @@ const Sidebar = () => {
           top: '100px',
           left: '50px',
         }}>
+        <Typography>Kategori</Typography>
         <List>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#">
               <ListItemIcon>
-                <ForestIcon />
+                <EmojiPeopleIcon />
               </ListItemIcon>
-              <ListItemText primary="Hutan" />
+              <ListItemText primary="Perkenalan" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#">
               <ListItemIcon>
-                <LandscapeIcon />
+                <SportsEsportsIcon />
               </ListItemIcon>
-              <ListItemText primary="Alam" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
-              <ListItemIcon>
-                <PetsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Animal" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
-              <ListItemIcon>
-                <ChairIcon />
-              </ListItemIcon>
-              <ListItemText primary="Furniture" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
-              <ListItemIcon>
-                <DirectionsBikeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Sport" />
+              <ListItemText primary="Mabar" />
             </ListItemButton>
           </ListItem>
         </List>
