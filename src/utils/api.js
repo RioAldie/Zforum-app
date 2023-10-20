@@ -195,7 +195,6 @@ const api = (() => {
     }
   }
   async function replyThread({ content, id }) {
-    console.log(content);
     const response = await _fetchWithAuth(
       `${BASE_URL}/threads/${id}/comments`,
       {

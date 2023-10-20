@@ -15,7 +15,7 @@ const Home = () => {
       }}>
       <Box
         sx={{
-          maxWidth: '500px',
+          width: { xs: '90%', sm: '90%', lg: '500px' },
           display: 'flex',
           flexDirection: 'column',
           gap: '20px',

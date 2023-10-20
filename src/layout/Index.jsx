@@ -1,6 +1,7 @@
 import { Container } from '@mui/material';
 import ResponsiveAppBar from './AppBar';
 import PropTypes from 'prop-types';
+import Footer from './Footer';
 
 const Layout = ({ children, authUser }) => {
   return (
@@ -13,6 +14,7 @@ const Layout = ({ children, authUser }) => {
         }}>
         {children}
       </Container>
+      <Footer />
     </>
   );
 };

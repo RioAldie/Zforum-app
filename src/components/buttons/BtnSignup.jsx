@@ -1,16 +1,17 @@
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { asyncRegisterUser } from '../../states/users/action';
-import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const BtnSignup = ({ name, email, password }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleRegister = () => {
     dispatch(asyncRegisterUser({ email, name, password }));
 
-    Navigate('/');
+    navigate('/login');
   };
   return (
     <Button
