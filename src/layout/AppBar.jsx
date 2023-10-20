@@ -11,7 +11,6 @@ import BtnLogin from '../components/buttons/BtnLogin';
 import BtnLogout from '../components/buttons/BtnLogout';
 
 const ResponsiveAppBar = ({ authUser }) => {
-  const { avatar, name } = authUser;
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
@@ -43,11 +42,11 @@ const ResponsiveAppBar = ({ authUser }) => {
                   gap: '15px',
                 }}>
                 <Avatar
-                  alt={name}
+                  alt={authUser.name}
                   sx={{
                     display: { xs: 'none', sm: 'block', lg: 'block' },
                   }}
-                  src={avatar}
+                  src={authUser.avatar}
                 />
                 <BtnLogout />
               </Box>

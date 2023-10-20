@@ -17,7 +17,7 @@ export default function LoginForm() {
   return (
     <Box
       sx={{
-        width: '500px',
+        width: { xs: 380, sm: 480, lg: 500 },
         display: 'flex',
         flexDirection: 'column',
         gap: '15px',

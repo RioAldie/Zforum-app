@@ -7,7 +7,7 @@ import {
 } from '../states/threadDetail/action';
 import { asyncAddThread } from '../states/thread/action';
 import Thread from '../components/Thread';
-import { Box, TextField, Button } from '@mui/material';
+import { Box, TextField, Button, Typography } from '@mui/material';
 import ThreadDetail from '../components/ThreadDetail';
 import Comment from '../components/Comment';
 
@@ -15,9 +15,7 @@ const DetailThread = () => {
   const [comment, setComment] = useState('');
   const [isUpdate, setIsUpdate] = useState(false);
   const { id } = useParams();
-  const { threadDetail = null, authUser } = useSelector(
-    (states) => states
-  );
+  const { threadDetail = null } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,15 +35,24 @@ const DetailThread = () => {
   }
 
   return (
-    <>
-      <Box>
+    <Box
+      sx={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginBottom: '100px',
+        paddingY: '50px',
+      }}>
+      <Box sx={{ width: { xs: '90%', sm: '90%', lg: '60%' } }}>
         <ThreadDetail {...threadDetail} />
       </Box>
       <Box
         sx={{
-          maxWidth: '80%',
+          width: { xs: '90%', sm: '90%', lg: '60%' },
           display: 'flex',
           flexDirection: 'row',
+          marginTop: '30px',
         }}>
         <TextField
           fullWidth
@@ -57,20 +64,23 @@ const DetailThread = () => {
         />
         <Button
           variant="contained"
-          onClick={() => onReplyTalk(comment)}>
+          onClick={() => onReplyTalk(comment)}
+          sx={{ marginLeft: '20px' }}>
           Kirim
         </Button>
       </Box>
-      <Box>
-        <p>Komentar</p>
-        {threadDetail.comments.length}
+      <Box sx={{ width: { xs: '90%', sm: '90%', lg: '60%' } }}>
+        <Typography sx={{ margin: '20px' }}>
+          Komentar ({threadDetail.comments.length})
+        </Typography>
+
         <Box>
           {threadDetail.comments.map((comment) => {
             return <Comment key={comment.id} {...comment} />;
           })}
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

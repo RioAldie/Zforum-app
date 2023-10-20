@@ -18,7 +18,7 @@ export default function Thread({ title, body, createdAt, user, id }) {
       }}>
       <CardHeader
         avatar={
-          <Avatar srcSet={user.avatar} aria-label="recipe"></Avatar>
+          <Avatar src={user.avatar} aria-label="recipe"></Avatar>
         }
         title={user.name}
         subheader={postTime}

@@ -11,10 +11,11 @@ export default function SignupForm() {
   return (
     <Box
       sx={{
-        width: '500px',
+        width: { xs: 380, sm: 480, lg: 500 },
         display: 'flex',
         flexDirection: 'column',
         gap: '15px',
+        marginTop: '100px',
       }}>
       <Typography variant="h5" color={'primary'}>
         Register
@@ -47,7 +48,9 @@ export default function SignupForm() {
       <BtnSignup name={name} password={password} email={email} />
       <Typography variant="subtitle1">
         Sudah Punya Akun?
-        <Link to={'/login'}>{' Login disini'}</Link>
+        <Link to={'/login'}>
+          <span style={{ color: 'yellow' }}>{' login disini'}</span>
+        </Link>
       </Typography>
     </Box>
   );
