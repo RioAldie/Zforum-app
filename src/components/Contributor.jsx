@@ -1,14 +1,15 @@
 import {
   Badge,
   Box,
+  Divider,
   ListItem,
   ListItemAvatar,
   ListItemText,
   Typography,
   styled,
 } from '@mui/material';
+import GradeIcon from '@mui/icons-material/Grade';
 import Avatar from '@mui/material/Avatar';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import PropTypes from 'prop-types';
 
 const BadgeBox = styled(Box)({
@@ -19,20 +20,12 @@ const BadgeBox = styled(Box)({
   height: '50px',
 });
 
-const UsersCard = (props) => {
-  const { name } = props;
+const Contributor = ({ name, email, avatar, score }) => {
   return (
     <>
-      <ListItem
-        alignItems="flex-start"
-        sx={{
-          cursor: 'pointer',
-          minWidth: '200px',
-          display: 'flex',
-          alignItems: 'center',
-        }}>
+      <ListItem alignItems="flex-start" sx={{ cursor: 'pointer' }}>
         <ListItemAvatar>
-          <Avatar alt={name} src="/static/images/avatar/2.jpg" />
+          <Avatar alt="Remy Sharp" src={`${avatar}`} />
         </ListItemAvatar>
         <ListItemText
           primary={name}
@@ -42,22 +35,30 @@ const UsersCard = (props) => {
                 sx={{ display: 'inline', cursor: 'pointer' }}
                 component="span"
                 variant="body2"
-                color="text.primary"></Typography>
+                color="text.secondary">
+                {email}
+              </Typography>
             </>
           }
         />
         <BadgeBox>
-          <Badge color="secondary" badgeContent={8} max={999}>
-            <FavoriteIcon color="error" />
+          <Badge
+            color="secondary"
+            badgeContent={score < 1 ? '0' : score}
+            max={999}>
+            <GradeIcon color="warning" />
           </Badge>
         </BadgeBox>
       </ListItem>
+      <Divider variant="inset" component="li" />
     </>
   );
 };
-
-UsersCard.propTypes = {
+Contributor.propTypes = {
   name: PropTypes.string,
+  email: PropTypes.string,
+  score: PropTypes.number,
+  avatar: PropTypes.string,
 };
 
-export default UsersCard;
+export default Contributor;

@@ -1,24 +1,53 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { asyncSetAuthUser } from '../states/authUser/action';
 
 export default function LoginForm() {
+  const [password, setPassword] = useState();
+  const [email, setEmail] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleLogin = (email, password) => {
+    dispatch(asyncSetAuthUser({ email, password }));
+
+    navigate('/forum');
+  };
   return (
     <Box
       sx={{
-        width: '500px',
+        width: { xs: 380, sm: 480, lg: 500 },
         display: 'flex',
         flexDirection: 'column',
         gap: '15px',
+        marginTop: '100px',
       }}>
-      <Typography variant="h5" color={'primary'}>
-        Login
-      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '10px',
+        }}>
+        <img
+          src="/images/genz-logo.png"
+          alt="logo"
+          width={30}
+          height={20}
+        />
+        <Typography variant="h5" color={'primary'}>
+          Login
+        </Typography>
+      </Box>
+
       <TextField
         fullWidth
         id="email"
         label="Email"
         type="email"
         variant="outlined"
+        onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
         fullWidth
@@ -27,20 +56,22 @@ export default function LoginForm() {
         type="password"
         autoComplete="current-password"
         variant="outlined"
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <Link to={'/forum'}>
-        <Button
-          fullWidth
-          size="large"
-          variant="contained"
-          color="primary">
-          Masuk
-        </Button>
-      </Link>
+
+      <Button
+        fullWidth
+        size="large"
+        variant="contained"
+        color="primary"
+        onClick={() => handleLogin(email, password)}>
+        Masuk
+      </Button>
+
       <Typography variant="subtitle1">
         Belum Punya Akun?
-        <Link href="#" underline="none">
-          {' daftar disini'}
+        <Link to={'/signup'}>
+          <span style={{ color: 'yellow' }}>{' daftar disini'}</span>
         </Link>
       </Typography>
     </Box>
