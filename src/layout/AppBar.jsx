@@ -7,10 +7,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BtnLogin from '../components/buttons/BtnLogin';
 import BtnLogout from '../components/buttons/BtnLogout';
+import Loading from '../components/Loading';
 
 const ResponsiveAppBar = ({ authUser }) => {
   return (
     <AppBar position="fixed">
+      <Loading />
       <Container maxWidth="xl">
         <Toolbar
           disableGutters

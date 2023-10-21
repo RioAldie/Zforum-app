@@ -9,13 +9,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     case ActionType.REPLY_THREAD:
       return {
         ...threadDetail,
-        comments: threadDetail.comments.includes(
-          action.payload.userId
-        )
-          ? threadDetail.comments.filter(
-              (id) => id !== action.payload.userId
-            )
-          : threadDetail.comments.concat(action.payload.userId),
+        comments: [action.payload.comment, ...threadDetail.comments],
       };
 
     default:
