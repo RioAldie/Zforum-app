@@ -11,18 +11,16 @@ import Comment from '../components/Comment';
 
 const DetailThread = () => {
   const [comment, setComment] = useState('');
-  const [isUpdate, setIsUpdate] = useState(false);
   const { id } = useParams();
   const { threadDetail = null } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(id));
-  }, [id, dispatch, isUpdate]);
+  }, [id, dispatch]);
 
   const onReplyTalk = (content) => {
     dispatch(asyncReplyThread({ content, id }));
-    setIsUpdate(!isUpdate);
   };
 
   if (!threadDetail) {

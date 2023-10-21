@@ -31,11 +31,11 @@ function toggleLikeThreadDetailActionCreator(userId) {
     },
   };
 }
-function replyThreadActionCreator(threadDetail) {
+function replyThreadActionCreator(comment) {
   return {
     type: ActionType.REPLY_THREAD,
     payload: {
-      threadDetail,
+      comment,
     },
   };
 }
@@ -72,13 +72,12 @@ function asyncToogleLikeThreadDetail() {
 }
 
 function asyncReplyThread({ content, id }) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     dispatch(showLoading());
 
-    const { threadDetail } = getState();
-    dispatch(replyThreadActionCreator(threadDetail));
     try {
-      await api.replyThread({ content, id });
+      const comment = await api.replyThread({ content, id });
+      dispatch(replyThreadActionCreator(comment));
     } catch (error) {
       alert(error.message);
     }

@@ -1,4 +1,4 @@
-import { Card, Button } from '@mui/material';
+import { Card, Button, Badge, styled } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -7,8 +7,23 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { postedAt } from '../utils/time';
 import ReactHtmlParser from 'react-html-parser';
+import ForumIcon from '@mui/icons-material/Forum';
 
-const Thread = ({ title, body, createdAt, user, id }) => {
+const BadgeBox = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '230px',
+  height: '50px',
+});
+const Thread = ({
+  title,
+  body,
+  createdAt,
+  user,
+  id,
+  totalComments,
+}) => {
   const postTime = postedAt(createdAt);
   return (
     <Card
@@ -34,17 +49,27 @@ const Thread = ({ title, body, createdAt, user, id }) => {
       <CardActions>
         <Box
           sx={{
-            width: '100px',
+            width: '300px',
             height: '50px',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
           }}>
           <Link to={`/thread/${id}`}>
-            <Button variant="outlined" color="secondary">
+            <Button size="small" variant="outlined" color="secondary">
               Lihat
             </Button>
           </Link>
+          <BadgeBox>
+            <Typography>Diskusi Berlangsung : </Typography>
+            <Badge
+              sx={{ marginLeft: '10px' }}
+              color="secondary"
+              badgeContent={totalComments < 1 ? '0' : totalComments}
+              max={999}>
+              <ForumIcon color="warning" />
+            </Badge>
+          </BadgeBox>
         </Box>
       </CardActions>
     </Card>
@@ -58,6 +83,7 @@ Thread.propTypes = {
   users: PropTypes.array,
   user: PropTypes.object,
   id: PropTypes.string,
+  totalComments: PropTypes.number,
 };
 
 export default Thread;
