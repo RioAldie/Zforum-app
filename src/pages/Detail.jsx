@@ -64,14 +64,17 @@ const DetailThread = () => {
           Kirim
         </Button>
       </Box>
+
       <Box sx={{ width: { xs: '90%', sm: '90%', lg: '60%' } }}>
         <Typography sx={{ margin: '20px' }}>
           Komentar ({threadDetail.comments.length})
         </Typography>
 
         <Box>
-          {threadDetail.comments.map((comment) => {
-            return <Comment key={comment.id} {...comment} />;
+          {threadDetail.comments.map((comment, i) => {
+            if (comment !== undefined) {
+              return <Comment key={i} {...comment} />;
+            }
           })}
         </Box>
       </Box>

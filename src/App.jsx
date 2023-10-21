@@ -14,6 +14,7 @@ import {
   ThemeProvider,
   createTheme,
 } from '@mui/material';
+import Loading from './components/Loading';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -63,6 +64,7 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <Loading />
           <Layout authUser={authUser}>
             <Routes>
               <Route path="/" element={<Home />} />

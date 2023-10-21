@@ -217,10 +217,10 @@ const api = (() => {
     }
 
     const {
-      data: { detailThread },
+      data: { comment },
     } = responseJson;
 
-    return detailThread;
+    return comment;
   }
 
   async function getLeaderBoards() {
