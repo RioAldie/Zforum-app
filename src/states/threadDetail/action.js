@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -38,31 +39,26 @@ function replyThreadActionCreator(threadDetail) {
     },
   };
 }
-function asyncReplyThread({ content, id }) {
-  return async (dispatch) => {
-    try {
-      const threadDetail = await api.replyThread({ content, id });
-      dispatch(replyThreadActionCreator(threadDetail));
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-}
+
 function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
-    dispatch(clearThreadDetailActionCreator());
+    dispatch(showLoading());
 
+    dispatch(clearThreadDetailActionCreator());
     try {
       const threadDetail = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncToogleLikeThreadDetail() {
   return async (dispatch, getState) => {
+    dispatch(showLoading());
+
     const { authUser, threadDetail } = getState();
     dispatch(toggleLikeThreadDetailActionCreator(authUser.id));
 
@@ -71,9 +67,24 @@ function asyncToogleLikeThreadDetail() {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
+function asyncReplyThread({ content, id }) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+
+    const { threadDetail } = getState();
+    dispatch(replyThreadActionCreator(threadDetail));
+    try {
+      await api.replyThread({ content, id });
+    } catch (error) {
+      alert(error.message);
+    }
+    dispatch(hideLoading());
+  };
+}
 export {
   ActionType,
   receiveThreadDetailActionCreator,

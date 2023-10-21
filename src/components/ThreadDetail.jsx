@@ -38,7 +38,6 @@ ThreadDetail.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   createdAt: PropTypes.string,
-  upVotesBy: PropTypes.string,
   owner: PropTypes.object,
 };
 export default ThreadDetail;

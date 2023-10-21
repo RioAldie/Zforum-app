@@ -56,7 +56,6 @@ Thread.propTypes = {
   body: PropTypes.string,
   createdAt: PropTypes.string,
   users: PropTypes.array,
-  upVotesBy: PropTypes.string,
   user: PropTypes.object,
   id: PropTypes.string,
 };
