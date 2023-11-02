@@ -3,15 +3,13 @@ import threadsReducer from './reducer';
 
 describe('talkReducers function', () => {
   it('should return the initial state when given by unknown action', () => {
-    it('should return the initial state when given by unknown action', () => {
-      // arrange
-      const initialState = [];
-      const action = { type: 'UNKNOWN' };
-      // action
-      const nextState = threadsReducer(initialState, action);
-      // assert
-      expect(nextState).toEqual(initialState);
-    });
+    // arrange
+    const initialState = [];
+    const action = { type: 'UNKNOWN' };
+    // action
+    const nextState = threadsReducer(initialState, action);
+    // assert
+    expect(nextState).toEqual(initialState);
   });
 
   it('should return the talks when given by RECEIVE_TALKS action', () => {
