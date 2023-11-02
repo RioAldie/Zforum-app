@@ -4,7 +4,6 @@ import api from '../../utils/api';
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
   ADD_THREAD: 'ADD_THREAD',
-  TOGGLE_LIKE_THREAD: 'TOGGLE_LIKE_THREAD',
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -48,34 +47,10 @@ function asyncAddThread({ title, body }) {
   };
 }
 
-function asyncToogleLikeThread(threadId) {
-  return async (dispatch, getState) => {
-    dispatch(showLoading());
-    const { authUser } = getState();
-    dispatch(
-      toggleLikeThreadActionCreator({ threadId, userId: authUser.id })
-    );
-
-    try {
-      await api.toggleUpvoteThread(threadId);
-    } catch (error) {
-      alert(error.message);
-      dispatch(
-        toggleLikeThreadActionCreator({
-          threadId,
-          userId: authUser.id,
-        })
-      );
-    }
-    dispatch(hideLoading());
-  };
-}
-
 export {
   ActionType,
   receiveThreadsActionCreator,
   addThreadActionCreator,
   toggleLikeThreadActionCreator,
   asyncAddThread,
-  asyncToogleLikeThread,
 };
