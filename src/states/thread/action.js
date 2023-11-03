@@ -24,16 +24,6 @@ function addThreadActionCreator(thread) {
   };
 }
 
-function toggleLikeThreadActionCreator({ threadId, userId }) {
-  return {
-    type: ActionType.TOGGLE_LIKE_THREAD,
-    payload: {
-      threadId,
-      userId,
-    },
-  };
-}
-
 function asyncAddThread({ title, body }) {
   return async (dispatch) => {
     dispatch(showLoading());
@@ -51,6 +41,5 @@ export {
   ActionType,
   receiveThreadsActionCreator,
   addThreadActionCreator,
-  toggleLikeThreadActionCreator,
   asyncAddThread,
 };
