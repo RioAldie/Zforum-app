@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import leaderboardsReducer from './reducer';
 
-describe('talkReducers function', () => {
-  it('should return the initial state when given by unknown action', () => {
+describe('leaderboardsReducer function', () => {
+  it('mengembalikan initial state saat diberi nilai unknown di action', () => {
     // arrange
     const initialState = [];
     const action = { type: 'UNKNOWN' };
@@ -12,7 +12,7 @@ describe('talkReducers function', () => {
     expect(nextState).toEqual(initialState);
   });
 
-  it('should return the talks when given by RECEIVE_TALKS action', () => {
+  it('mengembalikan data leaderboards ', () => {
     // arrange
     const initialState = [];
     const action = {
