@@ -1,12 +1,18 @@
-import { Box, TextField, Typography } from '@mui/material';
-import BtnSignup from './buttons/BtnSignup';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { asyncRegisterUser } from '../states/users/action';
+import SignupInput from './testing/SignupInput';
 
 const SignupForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleRegister = ({ email, name, password }) => {
+    dispatch(asyncRegisterUser({ email, name, password }));
+
+    navigate('/login');
+  };
 
   return (
     <Box
@@ -21,31 +27,7 @@ const SignupForm = () => {
         Register
       </Typography>
 
-      <TextField
-        fullWidth
-        label="Nama"
-        type="text"
-        variant="outlined"
-        onChange={(e) => setName(e.target.value)}
-      />
-      <TextField
-        fullWidth
-        id="email"
-        label="Email"
-        type="email"
-        variant="outlined"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <TextField
-        fullWidth
-        id="outlined-basic"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        variant="outlined"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <BtnSignup name={name} password={password} email={email} />
+      <SignupInput handleRegister={handleRegister} />
       <Typography variant="subtitle1">
         Sudah Punya Akun?
         <Link to={'/login'}>

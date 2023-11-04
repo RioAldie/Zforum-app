@@ -4,22 +4,14 @@ import { asyncRegisterUser } from '../../states/users/action';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-const BtnSignup = ({ name, email, password }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleRegister = () => {
-    dispatch(asyncRegisterUser({ email, name, password }));
-
-    navigate('/login');
-  };
+const BtnSignup = ({ register }) => {
   return (
     <Button
       fullWidth
       size="large"
       variant="contained"
       color="primary"
-      onClick={() => handleRegister()}>
+      onClick={() => register()}>
       Daftar
     </Button>
   );

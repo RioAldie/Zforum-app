@@ -4,7 +4,7 @@
  * - LoginInput component
  *   - should handle username typing correctly
  *   - should handle password typing correctly
- *   - should call login function when login button is clicked
+ *   - should call handleLogin function when login button is clicked
  */
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -19,6 +19,7 @@ describe('LoginForm component', () => {
   afterEach(() => {
     cleanup();
   });
+
   it('should handle email typing correctly', async () => {
     // Arrange
     render(<LoginInput handleLogin={() => {}} />);
@@ -29,6 +30,7 @@ describe('LoginForm component', () => {
     // Assert
     expect(emailInput).toHaveValue('emailtest');
   });
+
   it('should handle password typing correctly', async () => {
     // Arrange
     render(<LoginInput handleLogin={() => {}} />);
@@ -42,7 +44,7 @@ describe('LoginForm component', () => {
     expect(passwordInput).toHaveValue('passwordtest');
   });
 
-  it('should call login function when login button is clicked', async () => {
+  it('should call handleLogin function when login button is clicked', async () => {
     // Arrange
     const mockLogin = vi.fn();
     render(<LoginInput handleLogin={mockLogin} />);

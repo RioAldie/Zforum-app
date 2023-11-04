@@ -2,18 +2,27 @@ import { Button, FormControl, TextField } from '@mui/material';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const LoginInput = ({ handleLogin }) => {
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+const SignupInput = ({ handleRegister }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <FormControl
       sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
       <TextField
         fullWidth
+        label="Nama"
+        type="text"
+        placeholder="Name"
+        variant="outlined"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <TextField
+        fullWidth
         id="email"
         label="Email"
-        type="email"
         placeholder="Email"
+        type="email"
         variant="outlined"
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -31,17 +40,16 @@ const LoginInput = ({ handleLogin }) => {
         fullWidth
         size="large"
         variant="contained"
-        name="Login"
         color="primary"
-        onClick={() => handleLogin(email, password)}>
-        Masuk
+        onClick={() => handleRegister({ email, name, password })}>
+        Daftar
       </Button>
     </FormControl>
   );
 };
 
-LoginInput.propTypes = {
-  handleLogin: PropTypes.func,
+SignupInput.propTypes = {
+  handleRegister: PropTypes.func,
 };
 
-export default LoginInput;
+export default SignupInput;
