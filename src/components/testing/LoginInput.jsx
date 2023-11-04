@@ -1,10 +1,10 @@
 import { Button, FormControl, TextField } from '@mui/material';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
+import useInput from '../../hooks/useInput';
 
 const LoginInput = ({ handleLogin }) => {
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+  const [password, setPassword] = useInput();
+  const [email, setEmail] = useInput();
   return (
     <FormControl
       sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
