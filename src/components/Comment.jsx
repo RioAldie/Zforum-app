@@ -1,6 +1,6 @@
 import { Avatar, CardHeader, Paper, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import { postedAt } from '../utils/time';
 
 const Comment = ({ owner, content, createdAt }) => {
@@ -15,7 +15,7 @@ const Comment = ({ owner, content, createdAt }) => {
         subheader={postTime}
       />
       <Typography variant="body2" sx={{ padding: '20px' }}>
-        {ReactHtmlParser(content)}
+        {parse(content)}
       </Typography>
     </Paper>
   );

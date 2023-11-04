@@ -6,7 +6,7 @@ import { Avatar, Box, CardHeader } from '@mui/material';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { postedAt } from '../utils/time';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import ForumIcon from '@mui/icons-material/Forum';
 
 const BadgeBox = styled(Box)({
@@ -43,7 +43,7 @@ const Thread = ({
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {ReactHtmlParser(body)}
+          {parse(body)}
         </Typography>
       </CardContent>
       <CardActions>

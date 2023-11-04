@@ -7,7 +7,7 @@ import {
   CardContent,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import { postedAt } from '../utils/time';
 
 const ThreadDetail = ({ owner, body, title, createdAt }) => {
@@ -27,7 +27,7 @@ const ThreadDetail = ({ owner, body, title, createdAt }) => {
             {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {ReactHtmlParser(body)}
+            {parse(body)}
           </Typography>
         </CardContent>
       </Card>
