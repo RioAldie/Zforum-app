@@ -8,29 +8,15 @@ const ActionType = {
   REPLY_THREAD: 'REPLY_THREAD',
 };
 
-function receiveThreadDetailActionCreator(threadDetail) {
+function receiveThreadDetailActionCreator(detailThread) {
   return {
     type: ActionType.RECEIVE_THREAD_DETAIL,
     payload: {
-      threadDetail,
+      detailThread,
     },
   };
 }
 
-function clearThreadDetailActionCreator() {
-  return {
-    type: ActionType.CLEAR_THREAD_DETAIL,
-  };
-}
-
-function toggleLikeThreadDetailActionCreator(userId) {
-  return {
-    type: ActionType.TOGGLE_LIKE_THREAD_DETAIL,
-    payload: {
-      userId,
-    },
-  };
-}
 function replyThreadActionCreator(comment) {
   return {
     type: ActionType.REPLY_THREAD,
@@ -44,26 +30,9 @@ function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
     dispatch(showLoading());
 
-    dispatch(clearThreadDetailActionCreator());
     try {
       const threadDetail = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
-    } catch (error) {
-      alert(error.message);
-    }
-    dispatch(hideLoading());
-  };
-}
-
-function asyncToogleLikeThreadDetail() {
-  return async (dispatch, getState) => {
-    dispatch(showLoading());
-
-    const { authUser, threadDetail } = getState();
-    dispatch(toggleLikeThreadDetailActionCreator(authUser.id));
-
-    try {
-      await api.toggleUpvoteThread(threadDetail.id);
     } catch (error) {
       alert(error.message);
     }
@@ -87,9 +56,6 @@ function asyncReplyThread({ content, id }) {
 export {
   ActionType,
   receiveThreadDetailActionCreator,
-  clearThreadDetailActionCreator,
-  toggleLikeThreadDetailActionCreator,
   asyncReceiveThreadDetail,
-  asyncToogleLikeThreadDetail,
   asyncReplyThread,
 };

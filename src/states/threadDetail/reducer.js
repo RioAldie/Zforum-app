@@ -1,19 +1,17 @@
 import { ActionType } from './action';
 
-function threadDetailReducer(threadDetail = null, action = {}) {
+function threadDetailReducer(detailThread = null, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREAD_DETAIL:
-      return action.payload.threadDetail;
-    case ActionType.CLEAR_THREAD_DETAIL:
-      return null;
+      return action.payload.detailThread;
     case ActionType.REPLY_THREAD:
       return {
-        ...threadDetail,
-        comments: [action.payload.comment, ...threadDetail.comments],
+        ...detailThread,
+        comments: [action.payload.comment, ...detailThread.comments],
       };
 
     default:
-      return threadDetail;
+      return detailThread;
   }
 }
 

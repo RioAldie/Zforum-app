@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import Threads from '../components/Threads';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import AddThreadTrigger from '../components/AddThreadTrigger';
 import Leaderboard from '../components/Leaderboard';
 import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
@@ -47,6 +47,12 @@ const Forum = () => {
           alignItems: 'center',
           flexDirection: 'column',
         }}>
+        <Typography
+          variant="h5"
+          sx={{ marginBottom: '20px' }}
+          color={'primary'}>
+          Zforum
+        </Typography>
         <AddThreadTrigger authUser={authUser} />
         <Threads threads={threadList} />
       </Box>

@@ -13,7 +13,9 @@ const Footer = () => {
         alignItems: 'center',
         gap: '20px',
         justifyContent: 'center',
-        marginTop: '100px',
+        position: 'relative',
+        bottom: '0',
+        marginTop: '300px',
       }}
       color={'primary'}>
       <img
